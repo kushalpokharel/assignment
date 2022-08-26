@@ -1,14 +1,17 @@
 import express from 'express';
 import * as bodyParser from 'body-parser';
 import {auth} from 'express-openid-connect';
+import 'dotenv/config';
+
+const { CLIENTID, SECRET, BASEURL} = process.env;
 
 const config = {
   authRequired: false,
   auth0Logout: true,
-  secret: '48B7KZxyePPO6RdYO8mRS8VNtY-WbGw8EgEuQ9lBHQe8DQ_Ss7_15J1LKighXENF',
+  secret: SECRET,
   baseURL: 'http://localhost:5000',
-  clientID: 'G08i74Kf1g4BzzIDvAo75l2l6NS5ypAN',
-  issuerBaseURL: 'https://dev-0xa4dy7d.us.auth0.com'
+  clientID: CLIENTID,
+  issuerBaseURL: BASEURL
 
 };
  

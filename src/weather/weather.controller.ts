@@ -4,7 +4,9 @@ import * as util from 'util';
 import * as path from 'path';
 import fetch from 'node-fetch';
 import NodeCache from 'node-cache';
+import 'dotenv/config';
 
+const { APPID } = process.env;
 
 // import Post from './weather.interface';
 
@@ -19,7 +21,7 @@ class WeatherController {
   public cache = new NodeCache({stdTTL:300});
   public path = '/';
   public router = express.Router();
-  private  appid = `702ea5e06732892d12c53e3af704ed12`;
+  
   constructor() {
     this.intializeRoutes();
   }
@@ -40,7 +42,7 @@ class WeatherController {
     
     const arr:Weather[] = await Promise.all( ncities.map(async (city:any) =>{
         const code = city["CityCode"];
-        const response = await fetch(`http://api.openweathermap.org/data/2.5/group?id=${code}&appid=${this.appid}`);
+        const response = await fetch(`http://api.openweathermap.org/data/2.5/group?id=${code}&appid=${APPID}`);
         const res = await response.json();
         // console.log(res);
         return({
