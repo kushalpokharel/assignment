@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('./styles'); %>
+  </head>
+  <body>
+    <% if(isAuth){%>
+        <h1>You are now logged in and can see weather data </h1>
+        <p><a href = "/logout">Logout</a></p>
+        
+            <% weather.forEach(function(weather) { %>
+            <div id="container">    
+                  <div id="card">
+                    
+                   <div id="content">
+                    <%= weather.name %>
+                     <ol>
+                       <li>  City id: <%= weather.id %> </li>
+                       <li>Temperature: <%= weather.temperature %></li>
+                       <li>Description: <%= weather.weatherDescription %></li>
+                      
+                     </ol>
+                    
+                   </div>
+                 </div>
+                </div>
+            <% }); %>
+            
+    <%} else {%>
+        <h1>You are not logged in. Please login </h1>
+        <p><a href = "/login">Login</a></p> 
+    <%} %>
+    <p></p>
+  </body>
+</html>
